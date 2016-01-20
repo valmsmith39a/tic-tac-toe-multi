@@ -1,6 +1,5 @@
 
 body {
-
 	background-image:url('http://image.stockcarracing.com/f/featurestories/9199916/scrp_0711_01_z%2Bnascar_grand_national_series%2Brace_cars.jpg');
 	/*background-image:url('http://ibackpackcanada.com/wp-content/uploads/2009/05/things-to-do-in-rocky-mountains.jpg');*/
 }
@@ -11,9 +10,7 @@ body {
 	width:100%;
 	color:red;
 	font-size:20px;
-	/*background-color: green;*/
-	text-align: center;
-	
+	text-align: center;	
 }
 
 .main-container {
@@ -23,18 +20,19 @@ body {
 	height:90%;
 	width:90%;
 	left-margin:5%;
-	/*background-color: yellow;*/
 	text-align: center;
 }
 
 #which-player {
 	position:relative;
 	background-color: white;
+	margin-left:10px;
 	width:200px;
 }
 
 #player-turn{
 	position:relative;
+	margin-left:10px;
 	background-color: white;
 	width: 200px;
 }
@@ -63,7 +61,6 @@ position:relative;
 	position:relative;
 	height:50px;
 	width:125px;
-	/*top:5px;*/
 	margin-left:45%;
 	background-color:red;
 	color:black;
@@ -73,7 +70,6 @@ position:relative;
 	background-position:30px; 
 	opacity: .80;
 	font-size:20px;
-
 }
 
 #displayPlayerBox {
@@ -85,7 +81,6 @@ position:relative;
 	color:yellow;
 	font-size:20px;
 	opacity: .85;
-	/*background-color: purple;*/
 }
 
 .squares {
