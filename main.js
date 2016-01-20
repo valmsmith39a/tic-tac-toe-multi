@@ -6,17 +6,36 @@ var ref = new Firebase('https://tic-tac-toe-multi.firebaseio.com/');
 var playersRef = ref.child('players');
 var gameStateRef = ref.child('gameState');
 var turnStateRef = ref.child('turn');
+var restartGameFlagRef = ref.child('turn');
 
 var currentPlayerG = '';
-var myTurnG;
-
 var arrayOfSquaresG = [];
 
 function init(){
 	// Set up the player
 	$('#input-name-submit-button').on('click', getPlayerName);	
-	$('.squares').click(squareClicked);
+	$('.squares').on('click', squareClicked);
+	$('#restart-game').on('click', restartGame);
 }
+
+function restartGame(){
+	if(currentPlayerG !== ''){
+		playersRef.remove();
+  	gameStateRef.remove();
+ 		turnStateRef.remove();
+	}
+}
+
+ref.on('value', function(snap){
+	//debugger;
+	if(snap.val() === null){
+		currentPlayerG = '';
+	  arrayOfSquaresG.splice(0, arrayOfSquaresG.length);
+	  $('#which-player').text('');
+	  $('#player-turn').text('');
+	  $('#input-name').val('');
+	}
+});
 
 ref.child('gameState').on('value', function(snap){
 		console.log(snap.val());
@@ -26,6 +45,10 @@ ref.child('gameState').on('value', function(snap){
 function drawBoard(snap){
 		arrayOfSquaresG.splice(0, arrayOfSquaresG.length);
 	  $('.main-container').empty();
+	  if(snap === null){
+	  	debugger;
+	  	snap.val() = '';
+	  }
   	for(var i = 0; i < 9; i++) {
   		var symbol = '';
   		if(snap.val()[i] == 1){
@@ -52,6 +75,7 @@ var whoseTurnIsIt='';
 // monitor the turn ref
 ref.child('turn').on('value', function(snap){
   whoseTurnIsIt = snap.val();
+  //debugger;
   if(whoseTurnIsIt !== null){
   	$('#player-turn').text('Whose turn: ' + whoseTurnIsIt);
   }
@@ -64,7 +88,7 @@ function squareClicked(){
   	if(currentPlayerG === 'playerX'){
   		$this.text('X');
   		turnStateRef.set('playerO');
-  		gameStateRef.on('value', function(snap){
+  		gameStateRef.once('value', function(snap){
   			console.log(snap.val());
   			var tempArr = snap.val();
   			tempArr.splice(index,1,1);
@@ -75,7 +99,7 @@ function squareClicked(){
   	else {
   		$this.text('O');
   		turnStateRef.set('playerX');
-  		gameStateRef.on('value', function(snap){
+  		gameStateRef.once('value', function(snap){
   			console.log(snap.val());
   			var tempArr = snap.val();
   			tempArr.splice(index,1,-1);
@@ -93,18 +117,22 @@ function startGame(){
   
   var board = [0,0,0,0,0,0,0,0,0];
   gameStateRef.set(board);
+
 }
 
 function getPlayerName(){
 	console.log('in get player name');
   playersRef.once('value', function(snapshot){
+  	debugger;
     console.log(snapshot.val());
     if(!snapshot.val()){
+    	debugger;
       playersRef.push({player1: $('#input-name').val()});
       currentPlayerG = 'playerX';
       $('#which-player').text('You are: ' + currentPlayerG);
     }
     else if(Object.keys(snapshot.val()).length===1){
+    	debugger;
       playersRef.push({player2: $('#input-name').val()});
       currentPlayerG = 'playerO';
       $('#which-player').text('You are: ' + currentPlayerG);
@@ -115,7 +143,6 @@ function getPlayerName(){
     }
   });
 }
-
 
 function checkIfWin(){
 	var sq0 = arrayOfSquaresG[0].data('player');
@@ -176,15 +203,18 @@ function checkIfWin(){
     }
     if(squaresFilledCounter === 9) {
     	alert('Nobody won');
+    	restartGame();
     }
 }
 
 function winEvent(winner) {
     if(winner === 1){
     	alert('Player X wins!!!');
+    	restartGame();
     }
     else {
     	alert('Player O wins!!!');
+    	restartGame();
     }
 }
 

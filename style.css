@@ -39,6 +39,13 @@ body {
 	width: 200px;
 }
 
+#restart-game {
+position:relative;
+	background-color: white;
+	width: 60px;	
+	margin-left:10px;
+}
+
 #playerAdminBox {
 	position:relative;
 	height:60px;
@@ -86,7 +93,7 @@ body {
 	height:33.33%;
 	width:33.33%;
 	margin:0px;
-	padding-top:50px;
+	padding:8%;
 	border:2px solid yellow;
 	background-color:blue;
 	display:inline-block;
