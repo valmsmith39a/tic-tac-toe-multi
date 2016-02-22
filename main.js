@@ -28,7 +28,6 @@ function restartGame(){
 }
 
 ref.on('value', function(snap){
-	//debugger;
 	if(snap.val() === null){
 		currentPlayerG = '';
 	  arrayOfSquaresG.splice(0, arrayOfSquaresG.length);
@@ -184,27 +183,27 @@ function checkIfWin(){
 		winEvent(win8 === 3 ? 1:-1);
 		return; 
 	}
-    var squaresFilledCounter = 0; 
-    for(var i = 0; i < 9; i++){
-    	if(arrayOfSquaresG[i].data('player') === 1 || arrayOfSquaresG[i].data('player') === -1) {
-        	squaresFilledCounter++;
-    	}
-    }
-    if(squaresFilledCounter === 9) {
-    	alert('Nobody won');
-    	restartGame();
-    }
+  var squaresFilledCounter = 0; 
+  for(var i = 0; i < 9; i++){
+  	if(arrayOfSquaresG[i].data('player') === 1 || arrayOfSquaresG[i].data('player') === -1) {
+      	squaresFilledCounter++;
+  	}
+  }
+  if(squaresFilledCounter === 9) {
+  	alert('Nobody won');
+  	restartGame();
+  }
 }
 
 function winEvent(winner) {
-    if(winner === 1){
-    	alert('Player X wins!!!');
-    	restartGame();
-    }
-    else {
-    	alert('Player O wins!!!');
-    	restartGame();
-    }
+  if(winner === 1){
+  	alert('Player X wins!!!');
+  	restartGame();
+  }
+  else {
+  	alert('Player O wins!!!');
+  	restartGame();
+  }
 }
 
 

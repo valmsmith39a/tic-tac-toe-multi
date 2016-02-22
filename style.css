@@ -1,7 +1,6 @@
 
 body {
 	background-image:url('http://image.stockcarracing.com/f/featurestories/9199916/scrp_0711_01_z%2Bnascar_grand_national_series%2Brace_cars.jpg');
-	/*background-image:url('http://ibackpackcanada.com/wp-content/uploads/2009/05/things-to-do-in-rocky-mountains.jpg');*/
 }
 
 .page-container {
@@ -38,7 +37,7 @@ body {
 }
 
 #restart-game {
-position:relative;
+	position:relative;
 	background-color: white;
 	width: 60px;	
 	margin-left:10px;
@@ -53,8 +52,8 @@ position:relative;
 	background-color:yellow;
 	color:black;
 	background-image:url('http://i158.photobucket.com/albums/t116/LynnSnipes/RC%20Race%202009%20BC/checkered20flag20gh.gif');
-    background-size: 65px 65px;
-    opacity:.85;
+  background-size: 65px 65px;
+	opacity:.85;
 }
 
 #startPlayerButton {
